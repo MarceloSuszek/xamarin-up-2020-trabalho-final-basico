@@ -37,9 +37,9 @@ namespace Cross2020TrabalhoFinalBasico.Views
                 return;
             }
 
-            var item = (Item) e.Item;
+            var movie = (Movie) e.Item;
 
-            await Navigation.PushAsync(new DetailPage(item));
+            await Navigation.PushAsync(new DetailPage(movie));
         }
     }
 }

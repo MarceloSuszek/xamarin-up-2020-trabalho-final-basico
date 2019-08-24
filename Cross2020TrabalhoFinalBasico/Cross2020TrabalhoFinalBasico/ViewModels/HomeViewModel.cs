@@ -2,38 +2,42 @@
 using Cross2020TrabalhoFinalBasico.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Cross2020TrabalhoFinalBasico.ViewModels
 {
     public sealed class HomeViewModel : BaseViewModel
     {
-        private IItemService itemService;
+        private IMovieService movieService;
 
-        private ObservableCollection<Item> items = new ObservableCollection<Item>();
+        private ObservableCollection<Movie> movies = new ObservableCollection<Movie>();
 
         public HomeViewModel()
         {
-            itemService = new ItemService();
+            movieService = new MovieService();
         }
 
-        public ObservableCollection<Item> Items
+        public ObservableCollection<Movie> Movies
         {
-            get => items;
-            set { items = value; OnPropertyChanged(); }
+            get => movies;
+            set { movies = value; OnPropertyChanged(); }
         }
 
         public async override Task Initialize()
         {
             await ExecuteBusyAction(async () => {
 
-                var itemsColletion = await itemService.GetAll();
+                (var error, var upcomingMovies) = await movieService.GetUpcoming();
 
-                Items.Clear();
-
-                foreach (var item in itemsColletion)
+                if(error != null)
                 {
-                    Items.Add(item);
+                    await Application.Current.MainPage.DisplayAlert("Error", error, "Ok");
+
+                    return;
                 }
+
+                Movies = new ObservableCollection<Movie>(upcomingMovies);
+
             });
         }
     }

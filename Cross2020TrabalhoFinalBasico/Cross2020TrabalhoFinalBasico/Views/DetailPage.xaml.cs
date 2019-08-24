@@ -13,11 +13,11 @@ namespace Cross2020TrabalhoFinalBasico.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailPage : ContentPage
     {
-        public DetailPage(Item item)
+        public DetailPage(Movie movie)
         {
             InitializeComponent();
 
-            BindingContext = item;
+            BindingContext = movie;
         }
     }
 }

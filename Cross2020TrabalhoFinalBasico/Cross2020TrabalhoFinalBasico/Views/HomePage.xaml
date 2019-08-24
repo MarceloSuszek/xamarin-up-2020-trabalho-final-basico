@@ -4,14 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="Home"
+             Title="Movies"
+             BackgroundColor="#455A64"
              x:Class="Cross2020TrabalhoFinalBasico.Views.HomePage">
+
     <ContentPage.Content>
-        <ListView
+        <ListView 
             HasUnevenRows="True"
             SelectionMode="None"
             SeparatorColor="Transparent"
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding Movies}"
             IsRefreshing="{Binding IsBusy}"
             ItemTapped="ListView_ItemTapped"
             CachingStrategy="RecycleElement">
@@ -19,38 +21,76 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Margin="16"
-                              ColumnSpacing="4"
-                              RowSpacing="4">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
 
-                            <Image Grid.Column="0"
-                                   Grid.Row="0"
-                                   Grid.RowSpan="2"
-                                   Source="{Binding PictureUrl}"/>
+                        <Frame 
+                            Margin="16"
+                            CornerRadius="10"
+                            Padding="0"
+                            BackgroundColor="#CFD8DC">
                             
-                            <Label Grid.Column="1"
-                                   Grid.Row="0"
-                                   Text="{Binding Title}"
-                                   FontSize="Medium"/>
-                                
-                            <Label Grid.Column="1"
-                                   Grid.Row="1"
-                                   Text="{Binding Description}"
-                                   FontSize="Small"/>
-                        </Grid>
+                            <Grid
+                                ColumnSpacing="0" 
+                                RowSpacing="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Grid.Row="0"
+                                    HeightRequest="220"
+                                    Aspect="AspectFill"
+                                    Source="{Binding FullBackdropPath}" />
+
+                                <StackLayout 
+                                    Margin="0"
+                                    Spacing="4"
+                                    VerticalOptions="End"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="2">
+
+                                        <Grid
+                                        Margin="8"
+                                        ColumnSpacing="0"
+                                        RowSpacing="0">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="1"/>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label
+                                            Grid.Row="0"
+                                            TextColor="#212121" 
+                                            Text="{Binding OriginalTitle}"
+                                            FontAttributes="Bold"
+                                            FontSize="22"/>
+                                            <BoxView 
+                                            Grid.Row="1"
+                                            HeightRequest="1" 
+                                            Color="#212121" 
+                                            Opacity="1" />
+                                            <Label
+                                            Grid.Row="2"
+                                            TextColor="#757575"
+                                            Text="{Binding ReleaseDate, StringFormat='release date: {0}'}"
+                                            LineBreakMode="WordWrap"
+                                            FontSize="18"/>
+                                        <Label
+                                            Grid.Row="3"
+                                            TextColor="#757575"
+                                            Text="{Binding Popularity, StringFormat='popularity: {0} votes' }"
+                                            LineBreakMode="WordWrap"
+                                            FontSize="18"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
     </ContentPage.Content>
 </ContentPage>

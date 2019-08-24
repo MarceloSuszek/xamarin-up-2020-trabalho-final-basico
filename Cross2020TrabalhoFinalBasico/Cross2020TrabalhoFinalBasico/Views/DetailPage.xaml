@@ -4,20 +4,90 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="{Binding Title}"
+             BackgroundColor="#CFD8DC"
+             Title="Movie Detail"
              x:Class="Cross2020TrabalhoFinalBasico.Views.DetailPage">
+    
     <ContentPage.Content>
-        <StackLayout Margin="16"
-                     Spacing="4">
-            
-            <Label Text="{Binding Title}"
-                   FontSize="Medium"/>
-            
-            <Label Text="{Binding Description}"
-                   FontSize="Small"/>
-            
-            <Image Source="{Binding PictureUrl}"/>
-            
-        </StackLayout>
+        <ScrollView>
+            <Grid>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="330" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Image 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    HeightRequest="330"
+                    BackgroundColor="#607D8B"
+                    Aspect="AspectFill"
+                    Source="{Binding FullBackdropPath}" />
+                
+                <Frame
+                    BackgroundColor="#455A64"
+                    Margin="8"
+                    Padding="6"
+                    CornerRadius="10"
+                    HeightRequest="220"
+                    Grid.Column="0"
+                    VerticalOptions="EndAndExpand"
+                    Grid.RowSpan="2"
+                    Grid.Row="0">
+                    
+                        <Image 
+                            Grid.Row="0"
+                            BackgroundColor="#C16C7A"
+                            Aspect="AspectFill"
+                            Source="{Binding FullPosterPath}" />
+                </Frame>
+                
+                <StackLayout
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Margin="16"
+                    Spacing="16">
+
+                    <Label 
+                       Margin="16, 0"
+                       Text="{Binding OriginalTitle}" 
+                       TextColor="#212121" 
+                       FontAttributes="Bold" 
+                       FontSize="24"/>
+
+                    <BoxView HeightRequest="1" Color="#212121" Opacity="0.5" />
+
+                    <Label
+                        Margin="16, 0"
+                        Text="{Binding Overview}" 
+                        TextColor="#757575"
+                        FontSize="20"/>
+
+                    <BoxView HeightRequest="1" Color="#757575" Opacity="0.5" />
+
+                    <Label
+                        Margin="16, 0"
+                        Text="{Binding Popularity, StringFormat='Popularity: {0}'}" 
+                        TextColor="#757575"
+                        FontSize="20"/>
+                    <BoxView HeightRequest="1" Color="#757575" Opacity="0.5" />
+
+                    <Label
+                        Margin="16, 16, 16, 32"
+                        Text="{Binding ReleaseDate, StringFormat='Release date: {0}'}" 
+                        TextColor="#757575"
+                        FontSize="20"/>
+                    
+                </StackLayout>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

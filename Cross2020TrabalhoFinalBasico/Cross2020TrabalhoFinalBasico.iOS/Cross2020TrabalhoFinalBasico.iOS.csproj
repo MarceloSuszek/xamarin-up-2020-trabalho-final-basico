@@ -130,4 +130,8 @@
       <Name>Cross2020TrabalhoFinalBasico</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="values\color.xml" />
+    <Content Include="values\style.xml" />
+  </ItemGroup>
 </Project>
